@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEVADARSHINI — Visual Communication Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,700;1,6..96,300;1,6..96,400&family=Syne:wght@400;500;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   TOKENS
+════════════════════════════════════════ */
+:root {
+  --bg:      #06060A;
+  --bg2:     #0C0C12;
+  --bg3:     #111118;
+  --white:   #F2EEE5;
+  --cream:   #D8D2C4;
+  --gold:    #C8A96E;
+  --gold2:   #E2C48A;
+  --dim:     #6A6860;
+  --rule:    rgba(200,169,110,.18);
+  --ff-disp: 'Bodoni Moda', Georgia, serif;
+  --ff-sans: 'Syne', sans-serif;
+  --ff-mono: 'DM Mono', monospace;
+}
+
+/* ════════════════════════════════════════
+   RESET & BASE
+════════════════════════════════════════ */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--ff-sans);
+  font-weight:400;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════ */
+#dot {
+  width:5px; height:5px;
+  background:var(--gold);
+  border-radius:50%;
+  position:fixed; z-index:9999;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
+#ring {
+  width:30px; height:30px;
+  border:1px solid rgba(200,169,110,.45);
+  border-radius:50%;
+  position:fixed; z-index:9998;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:left .1s ease-out, top .1s ease-out, width .25s, height .25s, border-color .25s;
+}
+body:has(a:hover) #ring, body:has(button:hover) #ring {
+  width:50px; height:50px;
+  border-color:var(--gold2);
+}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 52px;
+  background:rgba(6,6,10,.94);
+  border-bottom:1px solid var(--rule);
+  backdrop-filter:blur(14px);
+}
+.logo {
+  font-family:var(--ff-disp);
+  font-size:17px; font-weight:400;
+  color:var(--gold); text-decoration:none;
+  letter-spacing:.04em;
+}
+.nav-pills {
+  display:flex; gap:4px; list-style:none;
+}
+.nav-pills a {
+  font-family:var(--ff-mono);
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--dim); text-decoration:none;
+  padding:6px 14px;
+  border:1px solid transparent;
+  transition:color .2s, border-color .2s;
+}
+.nav-pills a:hover { color:var(--gold); border-color:var(--rule); }
+.nav-cta {
+  font-family:var(--ff-mono);
+  font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--bg); background:var(--gold);
+  padding:8px 20px; text-decoration:none;
+  transition:background .2s;
+}
+.nav-cta:hover { background:var(--gold2); }
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero {
+  min-height:100vh;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:0 52px 72px;
+  position:relative; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 65% 50% at 80% 30%, rgba(200,169,110,.055) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 85%, rgba(200,169,110,.03) 0%, transparent 55%),
+    var(--bg);
+}
+/* film grain */
+.hero-bg::after {
+  content:'';
+  position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.032'/%3E%3C/svg%3E");
+  opacity:.55; pointer-events:none;
+}
+/* big decorative letter */
+.hero-deco {
+  position:absolute; right:-2vw; top:50%;
+  transform:translateY(-50%);
+  font-family:var(--ff-disp); font-size:38vw; font-weight:700;
+  line-height:1; color:rgba(200,169,110,.025);
+  user-select:none; pointer-events:none;
+}
+.hero-tag {
+  font-family:var(--ff-mono);
+  font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:20px;
+  opacity:0; animation:fadeUp .8s .15s forwards;
+}
+.hero-h1 {
+  font-family:var(--ff-disp);
+  font-size:clamp(66px,8.5vw,130px);
+  font-weight:300; line-height:.9; letter-spacing:-.01em;
+  color:var(--white);
+  opacity:0; animation:fadeUp .95s .3s forwards;
+}
+.hero-h1 em { font-style:italic; color:var(--gold); }
+.hero-h1 span { display:block; }
+.hero-sub {
+  margin-top:30px; max-width:500px;
+  font-size:14px; line-height:1.85; color:var(--dim);
+  opacity:0; animation:fadeUp .9s .48s forwards;
+}
+.hero-sub strong { color:var(--cream); font-weight:500; }
+.hero-row {
+  display:flex; align-items:center; gap:24px; margin-top:48px;
+  opacity:0; animation:fadeUp .9s .64s forwards;
+}
+.btn-solid {
+  font-family:var(--ff-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--bg); background:var(--gold);
+  padding:14px 30px; text-decoration:none;
+  transition:background .2s, transform .2s;
+}
+.btn-solid:hover { background:var(--gold2); transform:translateY(-2px); }
+.btn-out {
+  font-family:var(--ff-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--gold); border:1px solid rgba(200,169,110,.45);
+  padding:14px 30px; text-decoration:none;
+  transition:border-color .2s, transform .2s;
+}
+.btn-out:hover { border-color:var(--gold); transform:translateY(-2px); }
+
+/* scroll cue */
+.scroll-cue {
+  position:absolute; bottom:36px; left:52px;
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim);
+  opacity:0; animation:fadeUp .9s .9s forwards;
+}
+.scroll-line { width:44px; height:1px; background:var(--rule); }
+
+/* ════════════════════════════════════════
+   TICKER
+════════════════════════════════════════ */
+.ticker-wrap {
+  overflow:hidden;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  background:var(--bg2);
+  padding:12px 0;
+}
+.ticker { display:flex; width:max-content; animation:tick 30s linear infinite; }
+.tk {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--dim); padding:0 36px; white-space:nowrap;
+}
+.tk span { color:var(--gold); }
+
+/* ════════════════════════════════════════
+   SECTION UTILITY
+════════════════════════════════════════ */
+.sec { padding:96px 52px; }
+.sec-alt { background:var(--bg2); }
+.sk {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:10px;
+  display:flex; align-items:center; gap:12px;
+}
+.sk::before { content:''; width:28px; height:1px; background:var(--gold); }
+.sh {
+  font-family:var(--ff-disp);
+  font-size:clamp(36px,4.5vw,62px);
+  font-weight:300; line-height:1.05; color:var(--white);
+  margin-bottom:52px;
+}
+.sh em { font-style:italic; color:var(--gold); }
+
+/* ════════════════════════════════════════
+   FILM SECTION — video cards with description
+════════════════════════════════════════ */
+.film-grid { display:flex; flex-direction:column; gap:48px; }
+.film-item {
+  display:grid; grid-template-columns:1.4fr 1fr; gap:40px;
+  align-items:start;
+  border:1px solid var(--rule);
+  background:var(--bg3);
+  overflow:hidden;
+  transition:border-color .3s;
+}
+.film-item:hover { border-color:rgba(200,169,110,.4); }
+.film-item:nth-child(even) { direction:rtl; }
+.film-item:nth-child(even) > * { direction:ltr; }
+.film-embed {
+  aspect-ratio:16/9;
+  background:#0A0A0F;
+  position:relative;
+  overflow:hidden;
+}
+.film-embed iframe { width:100%; height:100%; border:none; display:block; }
+.film-embed .fph {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  background:linear-gradient(135deg,#141420,#0A0A0F);
+}
+.fph-play {
+  width:56px; height:56px;
+  border:1.5px solid rgba(200,169,110,.5);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; color:var(--gold);
+  transition:border-color .2s, transform .2s;
+}
+.film-embed:hover .fph-play { border-color:var(--gold); transform:scale(1.08); }
+.fph-label {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--dim); text-align:center; padding:0 20px;
+}
+.film-meta { padding:36px 32px 36px 0; }
+.film-item:nth-child(even) .film-meta { padding:36px 0 36px 32px; }
+.film-cat {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:14px;
+}
+.film-title {
+  font-family:var(--ff-disp); font-size:26px; font-weight:400;
+  color:var(--white); line-height:1.2; margin-bottom:12px;
+}
+.film-year { font-family:var(--ff-mono); font-size:10px; color:var(--dim); margin-bottom:16px; }
+.film-desc { font-size:13px; line-height:1.9; color:var(--dim); margin-bottom:20px; }
+.film-tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
+.ftag {
+  font-family:var(--ff-mono); font-size:9px; padding:3px 10px;
+  background:rgba(200,169,110,.07); color:var(--gold); letter-spacing:.06em;
+}
+.film-links { display:flex; gap:18px; }
+.flink {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--dim); text-decoration:none;
+  border-bottom:1px solid var(--rule); padding-bottom:2px;
+  transition:color .2s, border-color .2s;
+}
+.flink:hover { color:var(--gold); border-color:var(--gold); }
+
+/* ════════════════════════════════════════
+   PHOTOGRAPHY — editorial mosaic
+════════════════════════════════════════ */
+.photo-intro { max-width:560px; font-size:14px; line-height:1.85; color:var(--dim); margin-bottom:48px; }
+.photo-intro strong { color:var(--cream); font-weight:500; }
+
+.mosaic {
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:80px;
+  gap:3px;
+  margin-bottom:48px;
+}
+.mc {
+  overflow:hidden; background:var(--bg3);
+  position:relative; cursor:pointer;
+}
+/* editorial layout spans */
+.mc:nth-child(1)  { grid-column:span 7; grid-row:span 4; }
+.mc:nth-child(2)  { grid-column:span 5; grid-row:span 2; }
+.mc:nth-child(3)  { grid-column:span 5; grid-row:span 2; }
+.mc:nth-child(4)  { grid-column:span 4; grid-row:span 3; }
+.mc:nth-child(5)  { grid-column:span 4; grid-row:span 3; }
+.mc:nth-child(6)  { grid-column:span 4; grid-row:span 3; }
+.mc:nth-child(7)  { grid-column:span 5; grid-row:span 2; }
+.mc:nth-child(8)  { grid-column:span 7; grid-row:span 2; }
+
+.mc img { width:100%; height:100%; object-fit:cover; transition:transform .45s; display:block; }
+.mc:hover img { transform:scale(1.06); }
+.mc-over {
+  position:absolute; inset:0;
+  background:rgba(6,6,10,.72);
+  display:flex; align-items:flex-end;
+  padding:16px;
+  opacity:0; transition:opacity .3s;
+}
+.mc:hover .mc-over { opacity:1; }
+.mc-label {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--gold);
+}
+/* placeholder for mosaic cells */
+.mc-ph {
+  width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  border:1px dashed rgba(200,169,110,.12);
+  color:var(--dim); font-family:var(--ff-mono); font-size:9px; letter-spacing:.1em;
+}
+
+.photo-links { display:flex; gap:20px; }
+.photo-link {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--dim); text-decoration:none;
+  border-bottom:1px solid var(--rule); padding-bottom:2px;
+  transition:color .2s, border-color .2s;
+}
+.photo-link:hover { color:var(--gold); border-color:var(--gold); }
+
+/* ════════════════════════════════════════
+   GRAPHIC DESIGN — horizontal scroll cards
+════════════════════════════════════════ */
+.design-scroll-wrap {
+  overflow-x:auto; overflow-y:visible;
+  padding-bottom:24px;
+  margin:0 -52px;
+  padding-left:52px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--rule) transparent;
+}
+.design-scroll { display:flex; gap:20px; width:max-content; padding-right:52px; }
+.design-card {
+  width:340px; flex-shrink:0;
+  background:var(--bg3);
+  border:1px solid var(--rule);
+  overflow:hidden;
+  transition:border-color .25s, transform .25s;
+}
+.design-card:hover { border-color:rgba(200,169,110,.4); transform:translateY(-4px); }
+.design-img {
+  width:100%; aspect-ratio:4/3;
+  background:#101016;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; position:relative;
+}
+.design-img img { width:100%; height:100%; object-fit:cover; }
+.design-img .dph {
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+  width:100%; height:100%;
+  background:linear-gradient(135deg,#141420,#0E0E18);
+  font-family:var(--ff-mono); font-size:9px; color:var(--dim); letter-spacing:.12em; text-align:center; padding:20px;
+}
+.dph-icon { font-size:32px; color:rgba(200,169,110,.3); }
+.design-body { padding:22px 24px 26px; }
+.d-cat { font-family:var(--ff-mono); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.d-title { font-family:var(--ff-disp); font-size:18px; font-weight:400; color:var(--white); line-height:1.2; margin-bottom:8px; }
+.d-desc { font-size:12px; line-height:1.8; color:var(--dim); margin-bottom:14px; }
+.d-link {
+  font-family:var(--ff-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--gold); text-decoration:none;
+  border-bottom:1px solid rgba(200,169,110,.3); padding-bottom:2px;
+}
+
+/* ════════════════════════════════════════
+   MOTION / VIDEO EDITING — grid
+════════════════════════════════════════ */
+.motion-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.motion-card {
+  background:var(--bg3);
+  border:1px solid var(--rule);
+  overflow:hidden;
+  transition:border-color .25s, transform .25s;
+}
+.motion-card:hover { border-color:rgba(200,169,110,.4); transform:translateY(-3px); }
+.motion-embed {
+  aspect-ratio:16/9;
+  background:#0A0A10;
+  position:relative; overflow:hidden;
+}
+.motion-embed iframe { width:100%; height:100%; border:none; }
+.motion-embed .mph {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  background:linear-gradient(135deg,#12121C,#0A0A10);
+}
+.mph-icon { font-size:28px; color:rgba(200,169,110,.4); }
+.mph-text { font-family:var(--ff-mono); font-size:9px; color:var(--dim); letter-spacing:.12em; text-align:center; padding:0 16px; }
+.motion-body { padding:20px 22px 24px; }
+.m-cat { font-family:var(--ff-mono); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.m-title { font-family:var(--ff-disp); font-size:17px; font-weight:400; color:var(--white); margin-bottom:6px; }
+.m-desc { font-size:12px; line-height:1.8; color:var(--dim); margin-bottom:12px; }
+.m-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:12px; }
+.mtag { font-family:var(--ff-mono); font-size:9px; padding:2px 8px; background:rgba(200,169,110,.06); color:var(--gold); }
+.m-link { font-family:var(--ff-mono); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(200,169,110,.3); padding-bottom:2px; }
+
+/* ════════════════════════════════════════
+   ABOUT / CONTACT STRIP
+════════════════════════════════════════ */
+.about-strip {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:center;
+}
+.about-body p { font-size:14px; line-height:1.9; color:var(--dim); margin-bottom:18px; }
+.about-body p strong { color:var(--cream); font-weight:500; }
+.about-tools { margin-top:28px; }
+.at-label { font-family:var(--ff-mono); font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--dim); margin-bottom:12px; }
+.at-grid { display:flex; flex-wrap:wrap; gap:7px; }
+.atool {
+  font-family:var(--ff-mono); font-size:9px; padding:4px 12px;
+  background:rgba(200,169,110,.06); color:var(--gold); letter-spacing:.06em;
+}
+.about-right { text-align:center; }
+.contact-cta {
+  font-family:var(--ff-disp); font-size:clamp(28px,3.5vw,50px);
+  font-weight:300; line-height:1.1; color:var(--white); margin-bottom:28px;
+}
+.contact-cta em { font-style:italic; color:var(--gold); }
+.c-links { display:flex; flex-direction:column; align-items:center; gap:12px; }
+.c-link {
+  font-family:var(--ff-mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--dim); text-decoration:none;
+  padding-bottom:2px; border-bottom:1px solid var(--rule);
+  transition:color .2s, border-color .2s;
+}
+.c-link:hover { color:var(--gold); border-color:var(--gold); }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background:var(--bg);
+  border-top:1px solid var(--rule);
+  padding:24px 52px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+footer p { font-family:var(--ff-mono); font-size:9px; color:var(--dim); letter-spacing:.08em; }
+.f-logo { font-family:var(--ff-disp); font-size:14px; color:var(--gold); }
+
+/* ════════════════════════════════════════
+   LIGHTBOX
+════════════════════════════════════════ */
+#lb {
+  display:none; position:fixed; inset:0; z-index:1000;
+  background:rgba(4,4,8,.97);
+  align-items:center; justify-content:center;
+}
+#lb.open { display:flex; }
+#lb img { max-width:92vw; max-height:90vh; object-fit:contain; }
+#lb-x {
+  position:absolute; top:20px; right:28px;
+  font-family:var(--ff-mono); font-size:11px; color:var(--gold);
+  cursor:pointer; letter-spacing:.1em;
+}
+
+/* ════════════════════════════════════════
+   REVEAL
+════════════════════════════════════════ */
+.rv { opacity:0; transform:translateY(24px); transition:opacity .65s, transform .65s; }
+.rv.on { opacity:1; transform:translateY(0); }
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);} }
+@keyframes tick { from{transform:translateX(0);}to{transform:translateX(-50%);} }
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:960px){
+  nav { padding:16px 22px; }
+  .nav-pills { display:none; }
+  .hero,.sec { padding-left:24px; padding-right:24px; }
+  .scroll-cue { left:24px; }
+  .hero-deco { display:none; }
+  .film-item { grid-template-columns:1fr; direction:ltr!important; }
+  .film-item:nth-child(even) .film-meta { padding:24px; }
+  .film-meta { padding:24px!important; }
+  .about-strip { grid-template-columns:1fr; gap:48px; }
+  .motion-grid { grid-template-columns:1fr; }
+  .design-scroll-wrap { margin:0 -24px; padding-left:24px; }
+  .mosaic { grid-template-columns:repeat(6,1fr); }
+  .mc:nth-child(1){grid-column:span 6;grid-row:span 3;}
+  .mc:nth-child(2){grid-column:span 3;grid-row:span 2;}
+  .mc:nth-child(3){grid-column:span 3;grid-row:span 2;}
+  .mc:nth-child(n+4){grid-column:span 2;grid-row:span 2;}
+  footer { padding:20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="dot"></div>
+<div id="ring"></div>
+
+<!-- ════ NAV ════ -->
+<nav>
+  <a href="#" class="logo">DEVADARSHINI</a>
+  <ul class="nav-pills">
+    <li><a href="#films">Films</a></li>
+    <li><a href="#photography">Photography</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#motion">Motion</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="mailto:devalakshman10@gmail.com" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-deco">V</div>
+
+  <p class="hero-tag">Visual Communication · M.Sc Graduate · Chennai</p>
+  <h1 class="hero-h1">
+    <span>DEVA</span>
+    <em>DARSHINI</em>
+  </h1>
+  <p class="hero-sub">
+    Crafting stories through <strong>film, photography, design</strong> and <strong>motion</strong> —
+    a visual communication graduate who believes every frame is a sentence
+    and every composition is a paragraph.
+  </p>
+  <div class="hero-row">
+    <a href="#films" class="btn-solid">View My Work</a>
+    <a href="mailto:youremail@gmail.com" class="btn-out">Contact Me</a>
+  </div>
+  <div class="scroll-cue"><span class="scroll-line"></span>Scroll</div>
+</section>
+
+<!-- ════ TICKER ════ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="tk">Short Films <span>·</span></span>
+    <span class="tk">Documentary <span>·</span></span>
+    <span class="tk">Photography <span>·</span></span>
+    <span class="tk">Brand Identity <span>·</span></span>
+    <span class="tk">Motion Graphics <span>·</span></span>
+    <span class="tk">Video Editing <span>·</span></span>
+    <span class="tk">VFX Compositing <span>·</span></span>
+    <span class="tk">Poster Design <span>·</span></span>
+    <span class="tk">Typography <span>·</span></span>
+    <span class="tk">Cinematography <span>·</span></span>
+    <span class="tk">Short Films <span>·</span></span>
+    <span class="tk">Documentary <span>·</span></span>
+    <span class="tk">Photography <span>·</span></span>
+    <span class="tk">Brand Identity <span>·</span></span>
+    <span class="tk">Motion Graphics <span>·</span></span>
+    <span class="tk">Video Editing <span>·</span></span>
+    <span class="tk">VFX Compositing <span>·</span></span>
+    <span class="tk">Poster Design <span>·</span></span>
+    <span class="tk">Typography <span>·</span></span>
+    <span class="tk">Cinematography <span>·</span></span>
+  </div>
+</div>
+
+<!-- ════ FILMS & DOCUMENTARIES ════ -->
+<section class="sec" id="films">
+  <div class="sk">01 · Films & Documentaries</div>
+  <h2 class="sh rv">Short Films &<br><em>Documentary Work</em></h2>
+
+  <div class="film-grid">
+
+    <!-- ── FILM 1 ── -->
+    <div class="film-item rv">
+      <div class="film-embed">
+        <!--
+        ╔══════════════════════════════════════════════════╗
+        ║  HOW TO ADD A YOUTUBE VIDEO:                    ║
+        ║  1. Open your YouTube video                     ║
+        ║  2. Click Share → Embed                         ║
+        ║  3. Copy the <iframe> code                      ║
+        ║  4. Paste it here replacing this comment block  ║
+        ╚══════════════════════════════════════════════════╝
+        -->
+        <div class="fph">
+          <div class="fph-play">▶</div>
+          <div class="fph-label">Paste YouTube embed here<br>Share → Embed → copy &lt;iframe&gt;</div>
+        </div>
+      </div>
+      <div class="film-meta">
+        <div class="film-cat">Short Film</div>
+        <div class="film-title">[Film Title]</div>
+        <div class="film-year">[Year] · [Duration]</div>
+        <div class="film-desc">
+          [Write 2–3 sentences: What is the story? What theme does it explore? What was your role — director, cinematographer, editor? Any screenings or awards?]
+        </div>
+        <div class="film-tags">
+          <span class="ftag">Direction</span>
+          <span class="ftag">Cinematography</span>
+          <span class="ftag">Premiere Pro</span>
+        </div>
+        <div class="film-links">
+          <a href="https://youtube.com/your-link" target="_blank" class="flink">Watch on YouTube ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FILM 2 ── -->
+    <div class="film-item rv">
+      <div class="film-embed">
+        <div class="fph">
+          <div class="fph-play">▶</div>
+          <div class="fph-label">Paste second film embed here</div>
+        </div>
+      </div>
+      <div class="film-meta">
+        <div class="film-cat">Documentary</div>
+        <div class="film-title">[Documentary Title]</div>
+        <div class="film-year">[Year] · [Duration]</div>
+        <div class="film-desc">
+          [Description — subject, approach, locations, people featured. What was the narrative thread? How was it received?]
+        </div>
+        <div class="film-tags">
+          <span class="ftag">Documentary</span>
+          <span class="ftag">DaVinci Resolve</span>
+          <span class="ftag">Sound Design</span>
+        </div>
+        <div class="film-links">
+          <a href="https://vimeo.com/your-link" target="_blank" class="flink">Watch on Vimeo ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FILM 3 — add more as needed by copy-pasting the above block ── -->
+
+  </div>
+</section>
+
+<!-- ════ PHOTOGRAPHY ════ -->
+<section class="sec sec-alt" id="photography">
+  <div class="sk">02 · Photography</div>
+  <h2 class="sh rv">Through the<br><em>Lens</em></h2>
+  <p class="photo-intro rv">
+    A curated selection across <strong>portraiture, street, editorial,</strong> and <strong>conceptual photography</strong>.
+    [Add a sentence about your photographic approach or philosophy here.]
+    Click any image to view full size.
+  </p>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  HOW TO ADD YOUR PHOTOS:                                   ║
+  ║                                                            ║
+  ║  Option A — GitHub (recommended, free, no limit):          ║
+  ║  1. Upload your photos to your GitHub repo                 ║
+  ║  2. Click the image file → right-click → Copy image URL   ║
+  ║  3. URL format:                                            ║
+  ║     https://raw.githubusercontent.com/USERNAME/REPO/main/photo.jpg
+  ║  4. Replace placeholder divs below with:                   ║
+  ║     <img src="YOUR_URL" alt="Photo title">                 ║
+  ║                                                            ║
+  ║  Option B — Google Drive:                                  ║
+  ║  Share → copy link → use direct link converter tool        ║
+  ║  (search: "Google Drive direct link generator")            ║
+  ╚══════════════════════════════════════════════════════════════╝
+  -->
+
+  <div class="mosaic rv">
+    <div class="mc" data-label="[Series Name]">
+      <div class="mc-ph"><span style="font-size:24px;opacity:.3">⊡</span>Featured Photo (wide)</div>
+      <div class="mc-over"><span class="mc-label">[Series Name] — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Portrait">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 2</div>
+      <div class="mc-over"><span class="mc-label">Portrait — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Street">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 3</div>
+      <div class="mc-over"><span class="mc-label">Street — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Editorial">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 4</div>
+      <div class="mc-over"><span class="mc-label">Editorial — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Conceptual">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 5</div>
+      <div class="mc-over"><span class="mc-label">Conceptual — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Product">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 6</div>
+      <div class="mc-over"><span class="mc-label">Product — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Documentary">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 7</div>
+      <div class="mc-over"><span class="mc-label">Documentary — View Full</span></div>
+    </div>
+    <div class="mc" data-label="Landscape">
+      <div class="mc-ph"><span style="font-size:18px;opacity:.3">⊡</span>Photo 8</div>
+      <div class="mc-over"><span class="mc-label">Landscape — View Full</span></div>
+    </div>
+  </div>
+
+  <div class="photo-links rv">
+    <a href="https://behance.net/yourprofile" target="_blank" class="photo-link">Full gallery on Behance ↗</a>
+    <a href="https://flickr.com/yourprofile" target="_blank" class="photo-link">Flickr portfolio ↗</a>
+  </div>
+</section>
+
+<!-- ════ GRAPHIC DESIGN ════ -->
+<section class="sec" id="design">
+  <div class="sk">03 · Graphic Design</div>
+  <h2 class="sh rv">Posters, Brands<br><em>& Layouts</em></h2>
+
+  <div class="design-scroll-wrap rv">
+    <div class="design-scroll">
+
+      <!-- DESIGN 1 -->
+      <div class="design-card">
+        <div class="design-img">
+          <!--
+          Replace with: <img src="YOUR_IMAGE_URL" alt="Project name">
+          Use GitHub raw URL or Google Drive direct link
+          -->
+          <div class="dph">
+            <div class="dph-icon">◈</div>
+            Paste design image here<br><span style="font-size:8px;opacity:.6;margin-top:4px;">GitHub raw URL or Google Drive link</span>
+          </div>
+        </div>
+        <div class="design-body">
+          <div class="d-cat">Brand Identity</div>
+          <div class="d-title">[Brand / Poster Title]</div>
+          <div class="d-desc">[Brief description — client or concept, tools used, where it was displayed or published.]</div>
+          <a href="https://behance.net/your-project" target="_blank" class="d-link">View on Behance ↗</a>
+        </div>
+      </div>
+
+      <!-- DESIGN 2 -->
+      <div class="design-card">
+        <div class="design-img">
+          <div class="dph"><div class="dph-icon">◈</div>Paste design image here</div>
+        </div>
+        <div class="design-body">
+          <div class="d-cat">Poster Design</div>
+          <div class="d-title">[Poster Title]</div>
+          <div class="d-desc">[Description of this design work — theme, typography choices, production context.]</div>
+          <a href="#" class="d-link">View Case Study ↗</a>
+        </div>
+      </div>
+
+      <!-- DESIGN 3 -->
+      <div class="design-card">
+        <div class="design-img">
+          <div class="dph"><div class="dph-icon">◈</div>Paste design image here</div>
+        </div>
+        <div class="design-body">
+          <div class="d-cat">Publication Layout</div>
+          <div class="d-title">[Publication / Magazine Title]</div>
+          <div class="d-desc">[Description — editorial layout, publication context, tools: InDesign, Illustrator.]</div>
+          <a href="#" class="d-link">View on Behance ↗</a>
+        </div>
+      </div>
+
+      <!-- DESIGN 4 -->
+      <div class="design-card">
+        <div class="design-img">
+          <div class="dph"><div class="dph-icon">◈</div>Paste design image here</div>
+        </div>
+        <div class="design-body">
+          <div class="d-cat">Typography</div>
+          <div class="d-title">[Typographic Work Title]</div>
+          <div class="d-desc">[Description — experimental typography, lettering, or type-driven design project.]</div>
+          <a href="#" class="d-link">View Work ↗</a>
+        </div>
+      </div>
+
+      <!-- Add more design cards by copy-pasting the .design-card block -->
+
+    </div>
+  </div>
+  <p style="font-family:var(--ff-mono);font-size:9px;color:var(--dim);margin-top:14px;letter-spacing:.1em;">← Scroll to see more</p>
+</section>
+
+<!-- ════ MOTION & VIDEO EDITING ════ -->
+<section class="sec sec-alt" id="motion">
+  <div class="sk">04 · Motion & Video Editing</div>
+  <h2 class="sh rv">Reels, Titles<br><em>& VFX Work</em></h2>
+
+  <div class="motion-grid rv">
+
+    <!-- MOTION 1 -->
+    <div class="motion-card">
+      <div class="motion-embed">
+        <!--
+        Paste YouTube embed here for your reel / motion graphics work
+        YouTube → Share → Embed → copy <iframe>
+        -->
+        <div class="mph">
+          <div class="mph-icon">◎</div>
+          <div class="mph-text">Paste YouTube embed here<br>for your showreel or motion work</div>
+        </div>
+      </div>
+      <div class="motion-body">
+        <div class="m-cat">Showreel</div>
+        <div class="m-title">[Showreel / Compilation Title]</div>
+        <div class="m-desc">[Description — what does this reel showcase? Editing style, transitions, music, duration.]</div>
+        <div class="m-tags"><span class="mtag">Premiere Pro</span><span class="mtag">After Effects</span></div>
+        <a href="https://youtube.com/your-link" target="_blank" class="m-link">Watch on YouTube ↗</a>
+      </div>
+    </div>
+
+    <!-- MOTION 2 -->
+    <div class="motion-card">
+      <div class="motion-embed">
+        <div class="mph">
+          <div class="mph-icon">◎</div>
+          <div class="mph-text">Paste motion graphics embed here</div>
+        </div>
+      </div>
+      <div class="motion-body">
+        <div class="m-cat">Motion Graphics</div>
+        <div class="m-title">[Motion Graphics / Title Sequence]</div>
+        <div class="m-desc">[Description — for what film or project? What animation techniques were used?]</div>
+        <div class="m-tags"><span class="mtag">After Effects</span><span class="mtag">Motion Design</span></div>
+        <a href="#" class="m-link">Watch ↗</a>
+      </div>
+    </div>
+
+    <!-- MOTION 3 -->
+    <div class="motion-card">
+      <div class="motion-embed">
+        <div class="mph">
+          <div class="mph-icon">◎</div>
+          <div class="mph-text">Paste VFX work embed here</div>
+        </div>
+      </div>
+      <div class="motion-body">
+        <div class="m-cat">VFX Compositing</div>
+        <div class="m-title">[VFX / Compositing Project]</div>
+        <div class="m-desc">[Description — what VFX techniques? Chroma key, matte painting, particle effects, compositing pipeline?]</div>
+        <div class="m-tags"><span class="mtag">After Effects</span><span class="mtag">VFX</span><span class="mtag">Compositing</span></div>
+        <a href="#" class="m-link">Watch ↗</a>
+      </div>
+    </div>
+
+    <!-- MOTION 4 -->
+    <div class="motion-card">
+      <div class="motion-embed">
+        <div class="mph">
+          <div class="mph-icon">◎</div>
+          <div class="mph-text">Paste fourth video embed here</div>
+        </div>
+      </div>
+      <div class="motion-body">
+        <div class="m-cat">Reels & Titles</div>
+        <div class="m-title">[Instagram Reel / Title Animation]</div>
+        <div class="m-desc">[Description — platform, style, engagement stats if any.]</div>
+        <div class="m-tags"><span class="mtag">Reels</span><span class="mtag">DaVinci Resolve</span></div>
+        <a href="#" class="m-link">Watch ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ ABOUT + CONTACT ════ -->
+<section class="sec" id="about">
+  <div class="about-strip">
+    <div class="about-body">
+      <div class="sk rv">About</div>
+      <h2 class="sh rv" style="margin-bottom:28px;">The <em>Person<br>Behind</em> the Lens</h2>
+      <div class="rv">
+        <p>I'm <strong>DEVADARSHINI LAKSHMANASAMY</strong>, a Visual Communication graduate from <strong>SRM Institute of Science and Technology (Main Campus), Kattankulathur, Chennai, Tamil Nadu, Chennai.</strong> My work lives at the intersection of storytelling and visual craft — whether that's a documentary film, a brand identity, or a single photograph that stops you mid-scroll.</p>
+        <p>I'm currently looking for <strong>opportunities in teaching, freelance design, and film production collaborations.</strong> If you have a project in mind, I'd love to hear from you.</p>
+      </div>
+      <div class="about-tools rv">
+        <div class="at-label">Tools & Software</div>
+        <div class="at-grid">
+          <span class="atool">Photoshop</span>
+          <span class="atool">Premiere Pro</span>
+          <span class="atool">After Effects</span>
+          <span class="atool">Illustrator</span>
+          <span class="atool">InDesign</span>
+          <span class="atool">Lightroom</span>
+          <span class="atool">DaVinci Resolve</span>
+          <span class="atool">Figma</span>
+          <span class="atool">Blender</span>
+          <span class="atool">Audition</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-right rv">
+      <div class="contact-cta">
+        Let's Create<br>Something<br><em>Together</em>
+      </div>
+      <div class="c-links">
+        <a href="mailto:devalakshman10@gmail.com " class="c-link">devalakshman10@gmail.com </a>
+        <a href="https://www.linkedin.com/in/devalakshman/" target="_blank" class="c-link">LinkedIn ↗</a>
+        <a href="https://www.instagram.com/_.devadarshini?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="c-link">Instagram ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <p>© 2026 DEVADARSHINI · Visual Communication</p>
+  <span class="f-logo">LD</span>
+  <p>M.Sc · SRM Institute of Science and Technology · Chennai</p>
+</footer>
+
+<!-- ════ LIGHTBOX ════ -->
+<div id="lb">
+  <span id="lb-x" onclick="closeLb()">✕ Close</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+/* cursor */
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function loop(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+
+/* reveal on scroll */
+const rv=document.querySelectorAll('.rv');
+const io=new IntersectionObserver(es=>{
+  es.forEach((e,i)=>{
+    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('on'),i*70);
+  });
+},{threshold:.08});
+rv.forEach(el=>io.observe(el));
+
+/* lightbox for photos */
+document.querySelectorAll('.mc').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const img=c.querySelector('img');
+    if(img){
+      document.getElementById('lb-img').src=img.src;
+      document.getElementById('lb').classList.add('open');
+    }
+  });
+});
+function closeLb(){ document.getElementById('lb').classList.remove('open'); }
+document.getElementById('lb').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeLb(); });
+
+/* design scroll — drag to scroll */
+const dw=document.querySelector('.design-scroll-wrap');
+if(dw){
+  let isDown=false,startX,scrollL;
+  dw.addEventListener('mousedown',e=>{isDown=true;startX=e.pageX-dw.offsetLeft;scrollL=dw.scrollLeft;});
+  dw.addEventListener('mouseleave',()=>isDown=false);
+  dw.addEventListener('mouseup',()=>isDown=false);
+  dw.addEventListener('mousemove',e=>{if(!isDown)return;e.preventDefault();const x=e.pageX-dw.offsetLeft;dw.scrollLeft=scrollL-(x-startX)*1.2;});
+}
+</script>
+</body>
+</html>
