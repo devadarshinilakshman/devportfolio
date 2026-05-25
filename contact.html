@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — [Your Name]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav:#C4B5E8;--lav2:#A891D6;--lav3:#E8E0F8;
+  --lav-dim:rgba(196,181,232,.1);
+  --ink:#1A1625;--ink2:#231D32;
+  --paper:#F7F4FF;
+  --rule:rgba(196,181,232,.16);
+  --ff-disp:'Libre Baskerville',Georgia,serif;
+  --ff-body:'Jost',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;}
+body{background:var(--paper);color:var(--ink);font-family:var(--ff-body);font-weight:300;}
+
+/* BG mesh */
+.bg{position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 55% at 95% 10%,rgba(196,181,232,.22) 0%,transparent 60%),
+    radial-gradient(ellipse 45% 50% at 5% 90%,rgba(168,145,214,.12) 0%,transparent 55%),
+    var(--paper);
+}
+
+/* SHELL */
+.shell{position:relative;z-index:1;width:100%;height:100vh;display:flex;flex-direction:column;padding:0 56px;}
+
+/* NAV */
+header{display:flex;align-items:center;justify-content:space-between;padding:32px 0;border-bottom:1px solid var(--rule);flex-shrink:0;opacity:0;animation:fadeIn .7s .1s forwards;}
+.logo{font-family:var(--ff-disp);font-size:14px;font-weight:400;letter-spacing:.06em;color:var(--ink);text-decoration:none;}
+nav{display:flex;gap:6px;}
+nav a{font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.4);text-decoration:none;padding:7px 14px;border:1px solid transparent;transition:color .2s,border-color .2s,background .2s;}
+nav a:hover,nav a.active{color:var(--ink);border-color:var(--rule);background:var(--lav-dim);}
+.nav-cta{background:var(--ink)!important;color:var(--lav3)!important;border-color:var(--ink)!important;}
+.nav-cta.active{background:var(--lav2)!important;border-color:var(--lav2)!important;}
+
+/* BODY */
+.contact-body{flex:1;display:flex;align-items:center;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;width:100%;align-items:center;}
+
+/* LEFT */
+.c-left{opacity:0;animation:fadeUp .85s .35s forwards;}
+.c-eyebrow{font-size:9px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--lav2);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.c-eyebrow::before{content:'';width:22px;height:1px;background:var(--lav2);}
+.c-h1{font-family:var(--ff-disp);font-size:clamp(44px,5.5vw,80px);font-weight:400;line-height:.9;color:var(--ink);margin-bottom:32px;}
+.c-h1 em{font-style:italic;color:var(--lav2);}
+.c-bio{font-size:14px;font-weight:300;line-height:1.85;color:rgba(26,22,37,.55);max-width:380px;}
+.c-bio strong{color:var(--ink);font-weight:400;}
+
+.avail{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:9px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--lav2);}
+.avail-dot{width:5px;height:5px;border-radius:50%;background:#7BAF7A;box-shadow:0 0 7px rgba(123,175,122,.8);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 5px rgba(123,175,122,.7);}50%{box-shadow:0 0 12px rgba(123,175,122,1);}}
+
+.soc-row{display:flex;gap:16px;margin-top:32px;}
+.soc{font-size:9px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,22,37,.35);text-decoration:none;padding-bottom:2px;border-bottom:1px solid var(--rule);transition:color .2s,border-color .2s;}
+.soc:hover{color:var(--lav2);border-color:var(--lav2);}
+
+/* RIGHT */
+.c-right{opacity:0;animation:fadeUp .85s .52s forwards;}
+.contact-items{display:flex;flex-direction:column;gap:1px;background:var(--rule);}
+.ci{display:grid;grid-template-columns:88px 1fr;align-items:center;gap:16px;padding:20px 24px;background:var(--paper);border-bottom:1px solid var(--rule);transition:background .2s;}
+.ci:last-child{border-bottom:none;}
+.ci:hover{background:rgba(196,181,232,.06);}
+.ci-label{font-size:8px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,22,37,.3);}
+.ci-value{font-size:13px;font-weight:300;color:rgba(26,22,37,.65);}
+.ci-link{font-size:13px;font-weight:300;color:var(--lav2);text-decoration:none;transition:color .2s;}
+.ci-link:hover{color:var(--ink);}
+
+/* BOTTOM */
+.bottom{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:20px 0 32px;border-top:1px solid var(--rule);opacity:0;animation:fadeIn .7s .85s forwards;}
+.b-copy{font-size:9px;font-weight:300;letter-spacing:.1em;color:rgba(26,22,37,.3);}
+.b-links{display:flex;gap:22px;}
+.b-link{font-size:9px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.28);text-decoration:none;transition:color .2s;}
+.b-link:hover{color:var(--lav2);}
+
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:900px){
+  html,body{overflow:auto;}
+  .shell{height:auto;min-height:100vh;}
+  .shell{padding:0 24px;}
+  header{padding:22px 0;}
+  .contact-body{padding:40px 0;}
+  .contact-grid{grid-template-columns:1fr;gap:40px;}
+  nav a:not(.nav-cta){display:none;}
+  .c-h1{font-size:44px;}
+  .bottom{padding:16px 0 24px;}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<div class="shell">
+  <header>
+    <a href="index.html" class="logo">[Your Name]</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="work.html">Work</a>
+      <a href="contact.html" class="nav-cta active">Contact</a>
+    </nav>
+  </header>
+
+  <div class="contact-body">
+    <div class="contact-grid">
+      <div class="c-left">
+        <p class="c-eyebrow">Get in touch</p>
+        <h1 class="c-h1">Let's<br>create<br><em>together</em></h1>
+        <p class="c-bio">Open to <strong>assistant professor positions</strong>, freelance design, and creative film collaborations across Chennai and beyond. If you have a project or a role — let's talk.</p>
+        <div class="avail"><span class="avail-dot"></span>Available for work</div>
+        <div class="soc-row">
+          <a href="https://behance.net/yourprofile" target="_blank" class="soc">Behance</a>
+          <a href="https://instagram.com/yourprofile" target="_blank" class="soc">Instagram</a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" class="soc">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="c-right">
+        <div class="contact-items">
+          <div class="ci">
+            <span class="ci-label">Email</span>
+            <a href="mailto:youremail@gmail.com" class="ci-link">youremail@gmail.com</a>
+          </div>
+          <div class="ci">
+            <span class="ci-label">Phone</span>
+            <a href="tel:+91XXXXXXXXXX" class="ci-link">+91 XXXXX XXXXX</a>
+          </div>
+          <div class="ci">
+            <span class="ci-label">Location</span>
+            <span class="ci-value">Chennai, Tamil Nadu</span>
+          </div>
+          <div class="ci">
+            <span class="ci-label">University</span>
+            <span class="ci-value">[College Name]</span>
+          </div>
+          <div class="ci">
+            <span class="ci-label">Portfolio</span>
+            <a href="https://behance.net/yourprofile" target="_blank" class="ci-link">behance.net/yourprofile</a>
+          </div>
+          <div class="ci">
+            <span class="ci-label">Available</span>
+            <span class="ci-value" style="color:#7BAF7A;">Open to opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <span class="b-copy">© 2026 [Your Full Name] · Visual Communication</span>
+    <div class="b-links">
+      <a href="index.html" class="b-link">Home</a>
+      <a href="about.html" class="b-link">About</a>
+      <a href="work.html" class="b-link">Work</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

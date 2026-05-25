@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — [Your Name]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav:#C4B5E8;--lav2:#A891D6;--lav3:#E8E0F8;
+  --lav-dim:rgba(196,181,232,.1);
+  --ink:#1A1625;--ink2:#231D32;
+  --paper:#F7F4FF;
+  --rule:rgba(196,181,232,.16);
+  --ff-disp:'Libre Baskerville',Georgia,serif;
+  --ff-body:'Jost',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--ff-body);font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:26px 56px;background:rgba(247,244,255,.94);border-bottom:1px solid var(--rule);backdrop-filter:blur(14px);}
+.logo{font-family:var(--ff-disp);font-size:14px;font-weight:400;letter-spacing:.06em;color:var(--ink);text-decoration:none;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.4);text-decoration:none;padding:7px 14px;border:1px solid transparent;transition:color .2s,border-color .2s,background .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);border-color:var(--rule);background:var(--lav-dim);}
+.nav-cta{background:var(--ink)!important;color:var(--lav3)!important;border-color:var(--ink)!important;}
+
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:120px 56px 100px;}
+.ph-eyebrow{font-size:9px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--lav2);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.ph-eyebrow::before{content:'';width:22px;height:1px;background:var(--lav2);}
+.ph-h1{font-family:var(--ff-disp);font-size:clamp(44px,5.5vw,76px);font-weight:400;line-height:.92;color:var(--ink);margin-bottom:48px;}
+.ph-h1 em{font-style:italic;color:var(--lav2);}
+
+/* FILTER */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:64px;}
+.filt{font-size:9px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,22,37,.38);padding:8px 18px;border:1px solid var(--rule);cursor:pointer;transition:all .2s;}
+.filt:hover,.filt.on{color:var(--ink);border-color:var(--lav);background:var(--lav-dim);}
+.filt.on{background:var(--ink);color:var(--lav3);border-color:var(--ink);}
+
+/* SECTION */
+.sec-label{font-size:9px;font-weight:400;letter-spacing:.26em;text-transform:uppercase;color:rgba(26,22,37,.3);margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px;}
+.sec-label::before{content:'';width:18px;height:1px;background:var(--lav);}
+.work-block{margin-bottom:88px;}
+
+/* CARD BASE */
+.card{background:#fff;border:1px solid var(--rule);overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s;margin-bottom:20px;}
+.card:hover{border-color:var(--lav);box-shadow:0 8px 40px rgba(196,181,232,.2);transform:translateY(-3px);}
+.card-body{padding:22px 28px 26px;}
+.card-cat{font-size:8px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--lav2);margin-bottom:8px;}
+.card-title{font-family:var(--ff-disp);font-size:20px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:8px;}
+.card-desc{font-size:13px;line-height:1.85;color:rgba(26,22,37,.5);margin-bottom:14px;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.ctag{font-size:9px;font-weight:300;letter-spacing:.08em;padding:3px 10px;border:1px solid var(--rule);color:rgba(26,22,37,.4);}
+.card-link{font-size:9px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--lav2);text-decoration:none;border-bottom:1px solid rgba(196,181,232,.3);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.card-link:hover{color:var(--ink);border-color:var(--lav2);}
+
+/* VIDEO */
+.video-wrap{aspect-ratio:16/9;width:100%;background:#F0ECF8;position:relative;overflow:hidden;}
+.video-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#EDE8F8,#F5F2FF);}
+.vph-play{width:52px;height:52px;border:1px solid var(--lav);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--lav2);transition:all .2s;}
+.card:hover .vph-play{background:var(--lav);color:#fff;}
+.vph-lbl{font-size:9px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--lav2);}
+
+/* PHOTO MOSAIC */
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:72px;gap:3px;}
+.mc{overflow:hidden;background:#EDE8F8;cursor:pointer;position:relative;}
+.mc:nth-child(1){grid-column:span 7;grid-row:span 4;}
+.mc:nth-child(2){grid-column:span 5;grid-row:span 2;}
+.mc:nth-child(3){grid-column:span 5;grid-row:span 2;}
+.mc:nth-child(4){grid-column:span 4;grid-row:span 3;}
+.mc:nth-child(5){grid-column:span 4;grid-row:span 3;}
+.mc:nth-child(6){grid-column:span 4;grid-row:span 3;}
+.mc:nth-child(7){grid-column:span 5;grid-row:span 2;}
+.mc:nth-child(8){grid-column:span 7;grid-row:span 2;}
+.mc img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .3s;}
+.mc:hover img{transform:scale(1.06);}
+.mc-over{position:absolute;inset:0;background:rgba(196,181,232,.55);display:flex;align-items:flex-end;padding:12px;opacity:0;transition:opacity .3s;}
+.mc:hover .mc-over{opacity:1;}
+.mc-label{font-size:8px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);}
+/* placeholder */
+.mc-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border:1px dashed rgba(196,181,232,.4);color:var(--lav);font-size:9px;letter-spacing:.1em;}
+
+/* DESIGN — horizontal scroll */
+.design-scroll-outer{overflow-x:auto;margin:0 -56px;padding:0 56px 20px;scrollbar-width:thin;scrollbar-color:var(--rule) transparent;}
+.design-scroll{display:flex;gap:18px;width:max-content;}
+.design-card{width:320px;flex-shrink:0;background:#fff;border:1px solid var(--rule);overflow:hidden;transition:border-color .25s,transform .25s,box-shadow .25s;}
+.design-card:hover{border-color:var(--lav);transform:translateY(-3px);box-shadow:0 8px 32px rgba(196,181,232,.2);}
+.dimg{aspect-ratio:4/3;background:#EDE8F8;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.dimg img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.design-card:hover .dimg img{transform:scale(1.05);}
+.dph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;height:100%;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--lav);}
+.dph-ico{font-size:30px;color:rgba(196,181,232,.4);}
+.dbody{padding:18px 20px 22px;}
+.d-cat{font-size:8px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--lav2);margin-bottom:6px;}
+.d-title{font-family:var(--ff-disp);font-size:16px;font-weight:400;color:var(--ink);margin-bottom:6px;line-height:1.2;}
+.d-desc{font-size:12px;line-height:1.8;color:rgba(26,22,37,.45);margin-bottom:12px;}
+.d-link{font-size:9px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--lav2);text-decoration:none;border-bottom:1px solid rgba(196,181,232,.3);padding-bottom:2px;}
+
+/* AUDIO */
+.audio-card{background:#fff;border:1px solid var(--rule);padding:22px 26px;display:flex;align-items:center;gap:22px;margin-bottom:14px;transition:border-color .25s,box-shadow .25s;}
+.audio-card:hover{border-color:var(--lav);box-shadow:0 4px 20px rgba(196,181,232,.15);}
+.audio-ico{width:46px;height:46px;border:1px solid var(--lav);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--lav2);flex-shrink:0;}
+.audio-info{flex:1;}
+.audio-title{font-family:var(--ff-disp);font-size:16px;font-weight:400;color:var(--ink);margin-bottom:4px;}
+.audio-sub{font-size:11px;font-weight:300;color:rgba(26,22,37,.4);margin-bottom:10px;}
+audio{width:100%;height:30px;accent-color:var(--lav2);}
+.audio-ph{font-size:10px;color:var(--lav);font-style:italic;padding:8px 0;}
+
+/* DOC EMBED */
+.doc-wrap{width:100%;height:460px;background:#EDE8F8;position:relative;overflow:hidden;}
+.doc-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.doc-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--lav2);font-size:9px;letter-spacing:.16em;text-transform:uppercase;}
+.doc-ico{font-size:42px;color:rgba(196,181,232,.5);}
+
+/* CERT CARD */
+.cert-card{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;background:#fff;border:1px solid var(--rule);padding:22px 26px;margin-bottom:12px;text-decoration:none;color:inherit;transition:border-color .25s,transform .2s,box-shadow .25s;}
+.cert-card:hover{border-color:var(--lav);transform:translateY(-2px);box-shadow:0 6px 24px rgba(196,181,232,.18);}
+.cert-badge{width:46px;height:46px;background:var(--lav-dim);border:1px solid var(--lav);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.cert-title{font-size:14px;font-weight:300;color:var(--ink);margin-bottom:4px;line-height:1.3;}
+.cert-sub{font-size:10px;font-weight:300;color:rgba(26,22,37,.4);margin-bottom:10px;letter-spacing:.04em;}
+.cert-verify{font-size:8px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--lav2);border-bottom:1px solid rgba(196,181,232,.3);padding-bottom:2px;display:inline-block;}
+
+/* 2-col grid */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;z-index:500;background:rgba(247,244,255,.96);backdrop-filter:blur(6px);align-items:center;justify-content:center;}
+#lb.open{display:flex;}
+#lb img{max-width:90vw;max-height:88vh;object-fit:contain;box-shadow:0 24px 80px rgba(196,181,232,.4);}
+#lb-x{position:absolute;top:22px;right:30px;font-size:10px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--lav2);cursor:pointer;transition:color .2s;}
+#lb-x:hover{color:var(--ink);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .65s,transform .65s;}
+.rv.on{opacity:1;transform:translateY(0);}
+
+/* PAGE FOOTER */
+.page-footer{display:flex;align-items:center;justify-content:space-between;margin-top:80px;padding-top:28px;border-top:1px solid var(--rule);}
+.pf-back{font-size:10px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.35);text-decoration:none;transition:color .2s;}
+.pf-back:hover{color:var(--lav2);}
+.pf-next{font-family:var(--ff-disp);font-size:20px;font-style:italic;color:rgba(26,22,37,.35);text-decoration:none;display:flex;align-items:center;gap:12px;transition:color .3s;}
+.pf-next:hover{color:var(--lav2);}
+.pf-next-label{font-family:var(--ff-body);font-size:9px;font-style:normal;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,22,37,.25);}
+
+@media(max-width:1024px){
+  .mosaic{grid-template-columns:repeat(6,1fr);}
+  .mc:nth-child(1){grid-column:span 6;grid-row:span 3;}
+  .mc:nth-child(2){grid-column:span 3;grid-row:span 2;}
+  .mc:nth-child(3){grid-column:span 3;grid-row:span 2;}
+  .mc:nth-child(n+4){grid-column:span 2;grid-row:span 2;}
+}
+@media(max-width:900px){
+  nav{padding:18px 24px;}
+  .page{padding:100px 24px 80px;}
+  .grid-2{grid-template-columns:1fr;}
+  .design-scroll-outer{margin:0 -24px;padding:0 24px 16px;}
+  .nav-links a:not(.nav-cta){display:none;}
+}
+@media(max-width:600px){
+  .mosaic{grid-template-columns:repeat(2,1fr);}
+  .mc{grid-column:span 1!important;grid-row:span 2!important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">[Your Name]</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="work.html" class="active">Work</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <p class="ph-eyebrow rv">Portfolio</p>
+  <h1 class="ph-h1 rv">Selected<br><em>Work</em></h1>
+
+  <div class="filter-bar rv">
+    <span class="filt on" data-f="all">All</span>
+    <span class="filt" data-f="films">Films</span>
+    <span class="filt" data-f="photos">Photography</span>
+    <span class="filt" data-f="design">Design</span>
+    <span class="filt" data-f="motion">Motion</span>
+    <span class="filt" data-f="docs">Docs & Audio</span>
+    <span class="filt" data-f="certs">Certifications</span>
+  </div>
+
+  <!-- ══ FILMS ══ -->
+  <div class="work-block" data-cat="films">
+    <div class="sec-label rv">01 · Short Films & Documentaries</div>
+    <div class="grid-2 rv">
+
+      <div class="card">
+        <div class="video-wrap">
+          <!--
+            ▶ HOW TO ADD VIDEO:
+            YouTube: Share → Embed → paste <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            Vimeo: Share → Embed → paste <iframe src="https://player.vimeo.com/video/VIDEO_ID"></iframe>
+
+            You also have: BRUU DEV.mov and Trailer Remix.mp4 in your assets folder.
+            Upload these to YouTube (unlisted) then embed here.
+          -->
+          <div class="vph">
+            <div class="vph-play">▶</div>
+            <div class="vph-lbl">Paste YouTube embed here</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Short Film</div>
+          <div class="card-title">[Film Title]</div>
+          <div class="card-desc">[2–3 lines: concept, your role, screenings or awards]</div>
+          <div class="card-tags"><span class="ctag">Direction</span><span class="ctag">Cinematography</span><span class="ctag">Premiere Pro</span></div>
+          <a href="https://youtube.com/your-link" target="_blank" class="card-link">Watch on YouTube ↗</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="video-wrap">
+          <div class="vph">
+            <div class="vph-play">▶</div>
+            <div class="vph-lbl">Paste second video embed here</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Documentary</div>
+          <div class="card-title">[Documentary Title]</div>
+          <div class="card-desc">[Subject, approach, response. Your role in production.]</div>
+          <div class="card-tags"><span class="ctag">Documentary</span><span class="ctag">DaVinci Resolve</span></div>
+          <a href="#" class="card-link">Watch on Vimeo ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ PHOTOGRAPHY ══ -->
+  <div class="work-block" id="photos" data-cat="photos">
+    <div class="sec-label rv">02 · Photography</div>
+    <p class="rv" style="font-size:14px;line-height:1.85;color:rgba(26,22,37,.5);max-width:560px;margin-bottom:28px;">
+      A curated selection across portraiture, editorial, street, and conceptual work.
+      Click any image to view full size.
+    </p>
+    <!--
+      ▶ HOW TO ADD PHOTOS:
+      1. Put all photos inside an "assets/" folder next to index.html
+      2. Replace placeholder divs with:
+         <img src="assets/FILENAME.JPG" alt="description">
+
+      Your available photos from the folder:
+      IMG_7873.JPG · IMG_7876.JPG · IMG_7982.JPG · IMG_7989.JPG · IMG_8092.JPG
+      WhatsApp Image files (various) · shinchan 1.png · shinchan 2.png
+      broucher.png · dev h1.png · dev h2.png
+    -->
+    <div class="mosaic rv">
+      <div class="mc" data-lbl="[Title]">
+        <img src="assets/IMG_7873.JPG" alt="Photo 1" onerror="this.parentNode.innerHTML='<div class=mc-ph><span>⊡</span>IMG_7873.JPG</div><div class=mc-over><span class=mc-label>[Title]</span></div>'">
+        <div class="mc-over"><span class="mc-label">[Title] — View Full</span></div>
+      </div>
+      <div class="mc" data-lbl="Portrait">
+        <img src="assets/IMG_7876.JPG" alt="Photo 2" onerror="this.parentNode.innerHTML='<div class=mc-ph><span>⊡</span>IMG_7876.JPG</div><div class=mc-over><span class=mc-label>Portrait</span></div>'">
+        <div class="mc-over"><span class="mc-label">Portrait</span></div>
+      </div>
+      <div class="mc" data-lbl="Editorial">
+        <img src="assets/IMG_7982.JPG" alt="Photo 3" onerror="this.parentNode.innerHTML='<div class=mc-ph><span>⊡</span>IMG_7982.JPG</div><div class=mc-over><span class=mc-label>Editorial</span></div>'">
+        <div class="mc-over"><span class="mc-label">Editorial</span></div>
+      </div>
+      <div class="mc" data-lbl="Conceptual">
+        <img src="assets/IMG_7989.JPG" alt="Photo 4" onerror="this.parentNode.innerHTML='<div class=mc-ph><span>⊡</span>IMG_7989.JPG</div><div class=mc-over><span class=mc-label>Conceptual</span></div>'">
+        <div class="mc-over"><span class="mc-label">Conceptual</span></div>
+      </div>
+      <div class="mc" data-lbl="Street">
+        <img src="assets/IMG_8092.JPG" alt="Photo 5" onerror="this.parentNode.innerHTML='<div class=mc-ph><span>⊡</span>IMG_8092.JPG</div><div class=mc-over><span class=mc-label>Street</span></div>'">
+        <div class="mc-over"><span class="mc-label">Street</span></div>
+      </div>
+      <div class="mc" data-lbl="Documentary">
+        <div class="mc-ph"><span>⊡</span>Add photo here</div>
+        <div class="mc-over"><span class="mc-label">Documentary</span></div>
+      </div>
+      <div class="mc" data-lbl="Landscape">
+        <div class="mc-ph"><span>⊡</span>Add photo here</div>
+        <div class="mc-over"><span class="mc-label">Landscape</span></div>
+      </div>
+      <div class="mc" data-lbl="Product">
+        <div class="mc-ph"><span>⊡</span>Add photo here</div>
+        <div class="mc-over"><span class="mc-label">Product</span></div>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:18px;" class="rv">
+      <a href="https://behance.net/yourprofile" target="_blank" class="card-link">Full gallery on Behance ↗</a>
+      <a href="https://flickr.com/yourprofile" target="_blank" class="card-link">Flickr portfolio ↗</a>
+    </div>
+  </div>
+
+  <!-- ══ GRAPHIC DESIGN ══ -->
+  <div class="work-block" id="design" data-cat="design">
+    <div class="sec-label rv">03 · Graphic Design & Branding</div>
+    <div class="design-scroll-outer rv">
+      <div class="design-scroll">
+
+        <!-- Uses actual asset: POSTER DESIGN.png -->
+        <div class="design-card">
+          <div class="dimg">
+            <img src="assets/POSTER DESIGN.png" alt="Poster Design" onerror="this.parentNode.innerHTML='<div class=dph><div class=dph-ico>◈</div>POSTER DESIGN.png</div>'">
+          </div>
+          <div class="dbody">
+            <div class="d-cat">Poster Design</div>
+            <div class="d-title">[Poster Title]</div>
+            <div class="d-desc">[Theme, typography choices, where it was used or displayed]</div>
+            <a href="#" class="d-link">View on Behance ↗</a>
+          </div>
+        </div>
+
+        <!-- Uses actual asset: broucher.png -->
+        <div class="design-card">
+          <div class="dimg">
+            <img src="assets/broucher.png" alt="Brochure Design" onerror="this.parentNode.innerHTML='<div class=dph><div class=dph-ico>◈</div>broucher.png</div>'">
+          </div>
+          <div class="dbody">
+            <div class="d-cat">Print Design</div>
+            <div class="d-title">Brochure Design</div>
+            <div class="d-desc">[Client or context, print specifications, design approach]</div>
+            <a href="#" class="d-link">View on Behance ↗</a>
+          </div>
+        </div>
+
+        <!-- Uses actual asset: dev h1.png -->
+        <div class="design-card">
+          <div class="dimg">
+            <img src="assets/dev h1.png" alt="Design Work 3" onerror="this.parentNode.innerHTML='<div class=dph><div class=dph-ico>◈</div>dev h1.png</div>'">
+          </div>
+          <div class="dbody">
+            <div class="d-cat">Digital Design</div>
+            <div class="d-title">[Design Title]</div>
+            <div class="d-desc">[Description of concept, platform, tools used]</div>
+            <a href="#" class="d-link">View Work ↗</a>
+          </div>
+        </div>
+
+        <!-- Uses actual asset: Home q.jpg -->
+        <div class="design-card">
+          <div class="dimg">
+            <img src="assets/Home q.jpg" alt="Design Work 4" onerror="this.parentNode.innerHTML='<div class=dph><div class=dph-ico>◈</div>Home q.jpg</div>'">
+          </div>
+          <div class="dbody">
+            <div class="d-cat">Brand Identity</div>
+            <div class="d-title">[Brand / Identity Title]</div>
+            <div class="d-desc">[Client, visual approach, deliverables]</div>
+            <a href="#" class="d-link">View on Behance ↗</a>
+          </div>
+        </div>
+
+        <!-- Uses: Gemini_Generated_Imag...7 (1).png -->
+        <div class="design-card">
+          <div class="dimg">
+            <img src="assets/Gemini_Generated_Imag...7 (1).png" alt="AI Visual Design" onerror="this.parentNode.innerHTML='<div class=dph><div class=dph-ico>◈</div>AI Visual Design</div>'">
+          </div>
+          <div class="dbody">
+            <div class="d-cat">AI + Design</div>
+            <div class="d-title">[AI-Assisted Visual]</div>
+            <div class="d-desc">[Concept, tools, creative brief behind this piece]</div>
+            <a href="#" class="d-link">View Work ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <p style="font-size:9px;letter-spacing:.1em;color:rgba(26,22,37,.3);margin-top:10px;">← Drag to scroll more →</p>
+  </div>
+
+  <!-- ══ MOTION ══ -->
+  <div class="work-block" data-cat="motion">
+    <div class="sec-label rv">04 · Motion & Video Editing</div>
+    <div class="grid-2 rv">
+      <div class="card">
+        <div class="video-wrap">
+          <div class="vph"><div class="vph-play">◎</div><div class="vph-lbl">Paste showreel embed here</div></div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Showreel</div>
+          <div class="card-title">[Showreel / Compilation Title]</div>
+          <div class="card-desc">[Editing style, transitions, music choices, duration]</div>
+          <div class="card-tags"><span class="ctag">Premiere Pro</span><span class="ctag">After Effects</span></div>
+          <a href="#" class="card-link">Watch ↗</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="video-wrap">
+          <div class="vph"><div class="vph-play">◎</div><div class="vph-lbl">Paste VFX / motion embed here</div></div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">VFX Compositing</div>
+          <div class="card-title">[VFX Project Title]</div>
+          <div class="card-desc">[Techniques: compositing, motion tracking, particle effects]</div>
+          <div class="card-tags"><span class="ctag">After Effects</span><span class="ctag">VFX</span></div>
+          <a href="#" class="card-link">Watch ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DOCS & AUDIO ══ -->
+  <div class="work-block" data-cat="docs">
+    <div class="sec-label rv">05 · Documents, Presentations & Audio</div>
+
+    <!-- PPT — RA213100201001 4(P) 1 (1).pptx -->
+    <div class="card rv" style="margin-bottom:24px;">
+      <div class="doc-wrap">
+        <!--
+          ▶ HOW TO EMBED YOUR PPT: RA213100201001 4(P) 1 (1).pptx
+          Option A (easiest): Upload to Google Drive → Open in Google Slides
+            File → Share → Publish to web → Embed tab → copy <iframe>
+          Option B: Upload to SlideShare.net → Share → Embed → copy <iframe>
+          Option C: Upload to OneDrive → Share → Embed → copy <iframe>
+          Then paste the <iframe> below, replacing this placeholder.
+        -->
+        <div class="doc-ph">
+          <div class="doc-ico">◫</div>
+          <span>Paste Google Slides embed here</span>
+          <span style="font-size:8px;color:var(--lav);opacity:.7;">File: RA213100201001 4(P) 1 (1).pptx → Upload to Google Slides → File → Publish to web → Embed</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">Presentation</div>
+        <div class="card-title">[Presentation Title]</div>
+        <div class="card-desc">[For which event, seminar, or subject — year, audience, key argument]</div>
+        <div class="card-tags"><span class="ctag">Seminar</span><span class="ctag">PowerPoint</span></div>
+        <a href="#" class="card-link">Open Full Slideshow ↗</a>
+      </div>
+    </div>
+
+    <!-- PDF — DEV 3D.pdf and Publication certificate-24.pdf -->
+    <div class="grid-2 rv" style="margin-bottom:24px;">
+      <div class="card">
+        <div class="doc-wrap" style="height:360px;">
+          <!--
+            ▶ HOW TO EMBED: DEV 3D.pdf
+            1. Upload to Google Drive
+            2. Right-click → Share → Anyone with link
+            3. Copy the File ID from URL (long string between /d/ and /view)
+            4. Replace FILE_ID below:
+            <iframe src="https://drive.google.com/file/d/FILE_ID/preview"></iframe>
+          -->
+          <div class="doc-ph">
+            <div class="doc-ico">≡</div>
+            <span>Paste Google Drive PDF embed</span>
+            <span style="font-size:8px;color:var(--lav);opacity:.7;">DEV 3D.pdf → Drive → File ID → /preview</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">PDF Document</div>
+          <div class="card-title">DEV 3D — Project Document</div>
+          <div class="card-desc">[Description of this document — project context, findings]</div>
+          <a href="assets/DEV 3D.pdf" target="_blank" class="card-link">Download PDF ↗</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="doc-wrap" style="height:360px;">
+          <div class="doc-ph">
+            <div class="doc-ico">≡</div>
+            <span>Paste Google Drive PDF embed</span>
+            <span style="font-size:8px;color:var(--lav);opacity:.7;">Publication certificate-24.pdf</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Certificate / Publication</div>
+          <div class="card-title">Publication Certificate 2024</div>
+          <div class="card-desc">[Journal name, paper title, institution, publication year]</div>
+          <a href="assets/Publication certificate-24.pdf" target="_blank" class="card-link">View Certificate ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIO — WhatsApp Audio 2026-0...M.mpeg -->
+    <div class="audio-card rv">
+      <div class="audio-ico">◎</div>
+      <div class="audio-info">
+        <div class="audio-title">[Audio Title]</div>
+        <div class="audio-sub">Background Score / Sound Design / Voiceover · [Year]</div>
+        <!--
+          ▶ HOW TO ADD AUDIO:
+          Option A (direct local): <audio src="assets/WhatsApp Audio 2026-0...M.mpeg" controls></audio>
+          Option B (Google Drive):
+            Upload → Share → copy File ID →
+            <audio src="https://drive.google.com/uc?export=download&id=FILE_ID" controls></audio>
+
+          Replace the placeholder div below with the <audio> tag.
+        -->
+        <div class="audio-ph">Paste &lt;audio src="assets/WhatsApp Audio 2026-0...M.mpeg" controls&gt;&lt;/audio&gt; here</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ CERTIFICATIONS ══ -->
+  <div class="work-block" data-cat="certs">
+    <div class="sec-label rv">06 · Certifications & Credentials</div>
+
+    <a href="#" target="_blank" class="cert-card rv">
+      <div class="cert-badge">🎓</div>
+      <div>
+        <div class="cert-title">[Certification / Workshop Title]</div>
+        <div class="cert-sub">[Issuing Organisation] · [Hours] · [Month, Year]</div>
+        <span class="cert-verify">Verify Certificate ↗</span>
+      </div>
+    </a>
+
+    <a href="#" target="_blank" class="cert-card rv">
+      <div class="cert-badge">◈</div>
+      <div>
+        <div class="cert-title">[FDP / Workshop Completion Certificate]</div>
+        <div class="cert-sub">[AICTE / UGC / Institution Name] · [Year]</div>
+        <span class="cert-verify">View Certificate ↗</span>
+      </div>
+    </a>
+
+    <!-- Uses: Publication certificate-24.pdf -->
+    <a href="assets/Publication certificate-24.pdf" target="_blank" class="cert-card rv">
+      <div class="cert-badge">◎</div>
+      <div>
+        <div class="cert-title">Publication Certificate 2024</div>
+        <div class="cert-sub">[Journal Name] · [Institution] · 2024</div>
+        <span class="cert-verify">View PDF ↗</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="page-footer rv">
+    <a href="index.html" class="pf-back">← Home</a>
+    <a href="contact.html" class="pf-next">
+      <span class="pf-next-label">Next —</span>
+      Contact
+    </a>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb"><span id="lb-x" onclick="closeLb()">✕ Close</span><img id="lb-img" src="" alt=""></div>
+
+<script>
+// reveal
+const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('on'),i*55);}),{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// filter
+document.querySelectorAll('.filt').forEach(f=>{
+  f.addEventListener('click',function(){
+    document.querySelectorAll('.filt').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+    const cat=this.dataset.f;
+    document.querySelectorAll('.work-block').forEach(b=>{
+      b.style.display=(cat==='all'||b.dataset.cat===cat)?'block':'none';
+    });
+  });
+});
+
+// lightbox
+document.querySelectorAll('.mc').forEach(c=>{
+  c.addEventListener('click',()=>{
+    const img=c.querySelector('img');
+    if(img){document.getElementById('lb-img').src=img.src;document.getElementById('lb').classList.add('open');}
+  });
+});
+function closeLb(){document.getElementById('lb').classList.remove('open');}
+document.getElementById('lb').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLb();});
+
+// drag scroll for design strip
+const ds=document.querySelector('.design-scroll-outer');
+if(ds){let d=false,sx,sl;
+  ds.addEventListener('mousedown',e=>{d=true;sx=e.pageX-ds.offsetLeft;sl=ds.scrollLeft;});
+  ds.addEventListener('mouseleave',()=>d=false);
+  ds.addEventListener('mouseup',()=>d=false);
+  ds.addEventListener('mousemove',e=>{if(!d)return;e.preventDefault();ds.scrollLeft=sl-(e.pageX-ds.offsetLeft-sx)*1.2;});
+}
+</script>
+</body>
+</html>

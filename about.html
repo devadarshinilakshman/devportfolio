@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — [Your Name]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lav:#C4B5E8;--lav2:#A891D6;--lav3:#E8E0F8;
+  --lav-dim:rgba(196,181,232,.12);
+  --ink:#1A1625;--ink2:#231D32;
+  --paper:#F7F4FF;--mist:rgba(196,181,232,.5);
+  --rule:rgba(196,181,232,.16);
+  --ff-disp:'Libre Baskerville',Georgia,serif;
+  --ff-body:'Jost',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--ink);font-family:var(--ff-body);font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:26px 56px;background:rgba(247,244,255,.92);border-bottom:1px solid var(--rule);backdrop-filter:blur(14px);}
+.logo{font-family:var(--ff-disp);font-size:14px;font-weight:400;letter-spacing:.06em;color:var(--ink);text-decoration:none;}
+.nav-links{display:flex;gap:6px;align-items:center;}
+.nav-links a{font-size:10px;font-weight:300;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.4);text-decoration:none;padding:7px 14px;border:1px solid transparent;transition:color .2s,border-color .2s,background .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);border-color:var(--rule);background:var(--lav-dim);}
+.nav-cta{background:var(--ink)!important;color:var(--lav3)!important;border-color:var(--ink)!important;}
+.nav-cta:hover{background:var(--ink2)!important;}
+
+/* PAGE WRAP */
+.page{max-width:1140px;margin:0 auto;padding:120px 56px 100px;}
+
+/* PAGE HEADER */
+.ph-eyebrow{font-size:9px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--lav2);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.ph-eyebrow::before{content:'';width:22px;height:1px;background:var(--lav2);}
+.ph-h1{font-family:var(--ff-disp);font-size:clamp(44px,5.5vw,80px);font-weight:400;line-height:.92;color:var(--ink);margin-bottom:72px;}
+.ph-h1 em{font-style:italic;color:var(--lav2);}
+
+/* PORTRAIT + INTRO GRID */
+.intro-grid{display:grid;grid-template-columns:340px 1fr;gap:72px;align-items:start;margin-bottom:80px;}
+.portrait-frame{position:relative;}
+.portrait-img{
+  width:100%;aspect-ratio:3/4;
+  background:url('assets/IMG_7876.JPG') center/cover no-repeat;
+  position:relative;overflow:hidden;
+}
+.portrait-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,rgba(196,181,232,.3) 100%);
+}
+/* decorative offset border */
+.portrait-frame::before{
+  content:'';
+  position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;
+  border:1px solid var(--lav);
+  z-index:-1;
+}
+.portrait-label{
+  position:absolute;bottom:-24px;left:0;
+  font-size:8px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--lav2);
+}
+
+/* INTRO TEXT */
+.intro-text{}
+.intro-text p{font-size:15px;line-height:1.9;color:rgba(26,22,37,.6);margin-bottom:22px;}
+.intro-text p strong{color:var(--ink);font-weight:400;}
+.intro-text p em{font-style:italic;color:var(--lav2);}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);margin-top:40px;}
+.stat{background:var(--paper);padding:24px 20px;text-align:center;}
+.stat-n{font-family:var(--ff-disp);font-size:42px;font-weight:400;color:var(--lav2);line-height:1;margin-bottom:5px;}
+.stat-l{font-size:9px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:rgba(26,22,37,.35);}
+
+/* TOOLS */
+.tools-block{margin-top:48px;padding-top:40px;border-top:1px solid var(--rule);}
+.block-label{font-size:9px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:rgba(26,22,37,.3);margin-bottom:18px;}
+.tools-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.tool{font-size:10px;font-weight:300;letter-spacing:.1em;padding:6px 16px;border:1px solid var(--rule);color:rgba(26,22,37,.5);transition:color .2s,border-color .2s,background .2s;}
+.tool:hover{color:var(--lav2);border-color:var(--lav);background:var(--lav-dim);}
+
+/* WORKSHOPS */
+.workshops{margin-top:72px;}
+.ws-grid{display:flex;flex-direction:column;gap:0;margin-top:28px;}
+.ws-item{display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--rule);}
+.ws-item:first-child{border-top:1px solid var(--rule);}
+.ws-year{font-family:var(--ff-disp);font-size:12px;font-style:italic;color:var(--lav);}
+.ws-title{font-size:14px;font-weight:300;color:var(--ink);}
+.ws-sub{font-size:11px;font-weight:300;color:rgba(26,22,37,.4);margin-top:3px;}
+.ws-badge{font-size:8px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px;background:var(--lav-dim);color:var(--lav2);white-space:nowrap;}
+
+/* SEMINARS */
+.seminars{margin-top:56px;}
+
+/* PAGE FOOTER */
+.page-footer{display:flex;align-items:center;justify-content:space-between;margin-top:80px;padding-top:28px;border-top:1px solid var(--rule);}
+.pf-back{font-size:10px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(26,22,37,.35);text-decoration:none;transition:color .2s;}
+.pf-back:hover{color:var(--lav2);}
+.pf-next{font-family:var(--ff-disp);font-size:20px;font-style:italic;color:rgba(26,22,37,.35);text-decoration:none;display:flex;align-items:center;gap:12px;transition:color .3s;}
+.pf-next:hover{color:var(--lav2);}
+.pf-next-label{font-family:var(--ff-body);font-size:9px;font-style:normal;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:rgba(26,22,37,.25);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .65s,transform .65s;}
+.rv.on{opacity:1;transform:translateY(0);}
+
+@media(max-width:960px){nav{padding:18px 24px;}.page{padding:100px 24px 80px;}.intro-grid{grid-template-columns:1fr;gap:48px;}.portrait-frame::before{display:none;}.stats-row{grid-template-columns:repeat(2,1fr);}.nav-links a:not(.nav-cta){display:none;}}
+@media(max-width:600px){.ws-item{grid-template-columns:48px 1fr;}.ws-badge{display:none;}.stats-row{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">[Your Name]</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <p class="ph-eyebrow rv">About</p>
+  <h1 class="ph-h1 rv">The person<br><em>behind the lens</em></h1>
+
+  <div class="intro-grid">
+    <div class="portrait-frame rv">
+      <div class="portrait-img"></div>
+      <!--
+        REPLACE BACKGROUND IMAGE:
+        Change url('assets/IMG_7876.JPG') to your preferred portrait photo.
+        Put photo in the same folder as index.html named "assets/".
+      -->
+      <div class="portrait-label">Visual Communication · Chennai</div>
+    </div>
+
+    <div class="intro-text rv">
+      <p>I'm <strong>[Your Full Name]</strong>, a Visual Communication graduate from <strong>[College Name], Chennai.</strong> My work lives where storytelling meets craft — in the quiet moment before a shutter fires, in the edit room at 2am, in the negative space of a well-set page.</p>
+      <p>I specialise in <em>short film production, editorial photography, graphic design,</em> and <em>motion graphics</em>. I believe every visual has a voice — my job is to make it speak with precision and feeling.</p>
+      <p>Currently pursuing my <strong>M.Sc in Visual Communication</strong> at [College Name]. Available for assistant professor positions and freelance creative collaborations.</p>
+      <p>I work with <strong>intention</strong>. Every project is a conversation between what a client needs and what an audience will feel.</p>
+
+      <div class="stats-row">
+        <div class="stat"><div class="stat-n">[X]</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">[X]+</div><div class="stat-l">Films</div></div>
+        <div class="stat"><div class="stat-n">[X]+</div><div class="stat-l">Photos</div></div>
+        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Workshops</div></div>
+      </div>
+
+      <div class="tools-block">
+        <div class="block-label">Tools & Software</div>
+        <div class="tools-grid">
+          <span class="tool">Photoshop</span><span class="tool">Premiere Pro</span>
+          <span class="tool">After Effects</span><span class="tool">Illustrator</span>
+          <span class="tool">InDesign</span><span class="tool">Lightroom</span>
+          <span class="tool">DaVinci Resolve</span><span class="tool">Figma</span>
+          <span class="tool">Blender</span><span class="tool">Audition</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKSHOPS -->
+  <div class="workshops rv">
+    <div class="block-label">Workshops & Masterclasses</div>
+    <div class="ws-grid">
+      <div class="ws-item">
+        <span class="ws-year">2025</span>
+        <div>
+          <div class="ws-title">Masterclass — AI Beyond Imagination</div>
+          <div class="ws-sub">Manish Rohith (VFX — The Boys, Game of Thrones) · SRMIST · Sept 2025</div>
+        </div>
+        <span class="ws-badge">Masterclass</span>
+      </div>
+      <div class="ws-item">
+        <span class="ws-year">2025</span>
+        <div>
+          <div class="ws-title">Pixel Perfect 2025 — Photography Workshop</div>
+          <div class="ws-sub">Dept. of Visual Communication, SRMIST · Aug 2025</div>
+        </div>
+        <span class="ws-badge">Workshop</span>
+      </div>
+      <div class="ws-item">
+        <span class="ws-year">2025</span>
+        <div>
+          <div class="ws-title">5 Days Workshop on Warli Painting</div>
+          <div class="ws-sub">Dept. of Visual Communication, SRMIST · Sept 2025</div>
+        </div>
+        <span class="ws-badge">5 Days</span>
+      </div>
+      <div class="ws-item">
+        <span class="ws-year">2024</span>
+        <div>
+          <div class="ws-title">Workshop on Cinematography Techniques</div>
+          <div class="ws-sub">Mr. Ramiz Naveeth (Film Industry Cinematographer) · SRMIST · March 2024</div>
+        </div>
+        <span class="ws-badge">Workshop</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMINARS -->
+  <div class="seminars rv">
+    <div class="block-label" style="margin-top:40px;">Seminars & Alumni Talks</div>
+    <div class="ws-grid">
+      <div class="ws-item">
+        <span class="ws-year">2024</span>
+        <div>
+          <div class="ws-title">Alumni Talk — The Art of Theatre Performance</div>
+          <div class="ws-sub">Mr. Sabarivas, Co-Founder of Theatrekaran · SRMIST · Feb 2024</div>
+        </div>
+        <span class="ws-badge">Alumni Talk</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer rv">
+    <a href="index.html" class="pf-back">← Home</a>
+    <a href="work.html" class="pf-next">
+      <span class="pf-next-label">Next —</span>
+      View Work
+    </a>
+  </div>
+
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('on'),i*70);}),{threshold:.07});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
