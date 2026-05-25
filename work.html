@@ -59,8 +59,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .card-link:hover{color:var(--ink);border-color:var(--lav2);}
 
 /* VIDEO */
-.video-wrap{aspect-ratio:16/9;width:100%;background:#F0ECF8;position:relative;overflow:hidden;}
+.video-wrap{aspect-ratio:16/9;width:100%;background:transparent;position:relative;overflow:hidden;}
 .video-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.video-container {width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
 .vph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(135deg,#EDE8F8,#F5F2FF);}
 .vph-play{width:52px;height:52px;border:1px solid var(--lav);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--lav2);transition:all .2s;}
 .card:hover .vph-play{background:var(--lav);color:#fff;}
@@ -201,26 +202,15 @@ audio{width:100%;height:30px;accent-color:var(--lav2);}
 
       <div class="card">
         <div class="video-wrap">
-          <!--
-            ▶ HOW TO ADD VIDEO:
-            YouTube: Share → Embed → paste <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
-            Vimeo: Share → Embed → paste <iframe src="https://player.vimeo.com/video/VIDEO_ID"></iframe>
-
-            You also have: BRUU DEV.mov and Trailer Remix.mp4 in your assets folder.
-            Upload these to YouTube (unlisted) then embed here.
-          -->
-          <div class="vph">
-            <div class="vph-play">▶</div>
-            <div class="video-container" style="width: 100%; aspect-ratio: 16 / 9; overflow: hidden; position: relative;">
-              <iframe src="https://www.youtube-nocookie.com/embed/IAgqr_AUkrU?si=JgR7nMN7TISlRmmN&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-                </div>
-                </div>
+          <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/IAgqr_AUkrU?si=JgR7nMN7TISlRmmN&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
         <div class="card-body">
           <div class="card-cat">Album Song</div>
           <div class="card-title">POGATHEY</div>
           <div class="card-desc">A soulful Tamil love track that captures the beauty of memories and the pain of long-distance love. A story of a boy holding onto moments of love as distance separates him from the one he cherishes</div>
-          <div class="card-tags"><span class="ctag">Direction</span>
+          <div class="card-tags"><span class="ctag">Direction</span></div>
           <a href="https://youtu.be/IAgqr_AUkrU?si=gbQBKo6AYITavWOf" target="_blank" class="card-link">Watch on YouTube ↗</a>
         </div>
       </div>
