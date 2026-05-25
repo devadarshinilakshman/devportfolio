@@ -629,5 +629,23 @@ if(ds){let d=false,sx,sl;
   ds.addEventListener('mousemove',e=>{if(!d)return;e.preventDefault();ds.scrollLeft=sl-(e.pageX-ds.offsetLeft-sx)*1.2;});
 }
 </script>
+<script>
+// ── THEME TOGGLE ──
+const btn = document.getElementById('themeToggle');
+const root = document.documentElement;
+
+// load saved preference
+const saved = localStorage.getItem('theme') || 'light';
+root.setAttribute('data-theme', saved);
+btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+
+btn.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  btn.textContent = next === 'dark' ? '☀️' : '🌙';
+});
+</script>
 </body>
 </html>
